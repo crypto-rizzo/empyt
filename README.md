@@ -64,14 +64,6 @@ Use `%%expression%%` to evaluate a Python expression and insert its result:
 <p>The current year is %% datetime.now().year %%</p>
 ```
 
-Alternatively, the above could be written as such.
-
-```html
-%% '<p>The current year in datetime.now().year </p>' %%
-```
-
-This is useful for #ternary statements explained below.
-
 ### Execution
 Use `<% code %>` for multi-line Python code blocks.
 Note how print() below is used similarly to echo in php.
@@ -112,7 +104,7 @@ else:
 Ternaries can be easily crafted with the `%% %%` expression syntax. This is especially useful for quick, one-line render statements.
 ```html
 <% example_switch = "on" %>
-%%'<h1>Switch is off</h1>'if example_switch == "off" else '<h1>Switch is on</h1>' %%
+%% "<h1>Switch is off</h1>" if example_switch == "off" else "<h1>Switch is on</h1>" %%
 ```
 
 ## Examples
