@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block title %}Yooo{% endblock %}
+{% block content %}
+    <% import time %>
+    <% from secrets import token_urlsafe %>
+    <% from math import sqrt, pi %>
+    <% import datetime %>
+    <% today = datetime.datetime.now() %>
+    <%
+    def hello_world():
+        print("Hello World Function")
+
+    def factorial(n):
+        if n == 0:
+            return 1
+        return n * factorial(n - 1)
+
+    def fibonacci(n):
+        a, b = 0, 1
+        while b < n:
+            a, b = b, a + b
+        return b
+
+    sample_list = [1, 2, 3, 4, 5]
+    sample_dict = {'name': 'Alice', 'age': 30}
+    %>
+
+    <h1>Python Template Test</h1>
+    <h2>Dynamic Content</h2>
+
+    <!-- Variable Injection (from context and other templates) -->
+    <h3>Variable Injection</h3>
+    <p>Current Date and Time: %% today.strftime('%Y-%m-%d %H:%M:%S') %%</p>
+    <p>Context Variable: %% some_var %%</p>
+    <p>Template Variable: %% outside_page %%</p>
+
+    <!-- Evaluation of Expressions -->
+    <h3>Evaluation of Expressions</h3>
+    <p>Square Root of 25: %% sqrt(25) %%</p>
+    <p>Value of Pi: %% pi %%</p>
+    <p>Secure Token: %% token_urlsafe(16) %%</p>
+    <p>Current Time: %% time.ctime() %%</p>
+    <p>3 Raised to the Power of 4: %% 3 ** 4 %%</p>
+
+    <!-- Conditional Logic -->
+    <h3>Conditional Logic</h3>
+    <%
+    if today.hour < 12:
+        greeting = "Good Morning!"
+    elif today.hour > 12 and today.hour < 6:
+        greeting = "Good Afternoon!"
+    else:
+        greeting = "Good Evening!"
+    %>
+    <p>Greeting: %% greeting %%</p>
+
+    <!-- For Loop -->
+    <h3>For Loop</h3>
+    <ul>
+    <%
+    for i in range(1, 6):
+        print(f"<li>Item {i}</li>")
+    %>
+    </ul>
+
+    <!-- While Loop -->
+    <h3>While Loop</h3>
+    <ul>
+    <%
+    i = 1
+    while i <= 5:
+        print(f"<li>Number {i}</li>")
+        i += 1
+    %>
+    </ul>
+
+    <!-- Nested Loops -->
+    <h3>Nested Loops</h3>
+    <ul>
+    <%
+    for i in range(1, 4):
+        print(f"<li>Outer {i}")
+        for j in range(1, 3):
+            print(f"  <ul><li>Inner {j}</li></ul>")
+        print("</li>")
+    %>
+    </ul>
+
+    <!-- List Comprehension -->
+    <h3>List Comprehension</h3>
+    <ul>
+    <%
+    squares = [x ** 2 for x in range(1, 6)]
+    for square in squares:
+        print(f"<li>Square: {square}</li>")
+    %>
+    </ul>
+
+    <!-- Lambda Functions -->
+    <h3>Lambda Functions</h3>
+    <ul>
+    <%
+    double = lambda x: x * 2
+    doubled_values = [double(x) for x in range(1, 6)]
+    for value in doubled_values:
+        print(f"<li>Doubled Value: {value}</li>")
+    %>
+    </ul>
+
+    <!-- Dictionary Operations -->
+    <h3>Dictionary Operations</h3>
+    <ul>
+    <%
+    keys = ', '.join(sample_dict.keys())
+    values = ', '.join(map(str, sample_dict.values()))
+    %>
+    <li>Keys: %% keys %%</li>
+    <li>Values: %% values %%</li>
+    </ul>
+
+    <!-- Function Call -->
+    <h3>Function Call</h3>
+    <p>Factorial of 5: %% factorial(5) %%</p>
+    <p>Fibonacci Number for 10: %% fibonacci(10) %%</p>
+
+    <!-- Exception Handling -->
+    <h3>Exception Handling</h3>
+    <p>Exception Handling Test:</p>
+    <%
+    try:
+        risky_division = 10 / 0
+    except ZeroDivisionError:
+        risky_division = "Error: Division by Zero"
+    except Exception as e:
+        risky_division = f"Unexpected Error: {str(e)}"
+    %>
+    <p>Result of Risky Division: %% risky_division %%</p>
+
+    <!-- Multiple Print Statements -->
+    <h3>Multiple Print Statements</h3>
+    <p>Multiple Print Statements:</p>
+    <%
+    print("This is the first line.")
+    print("</br>")
+    print("This is the second line.")
+    %>
+    <hr>
+{% endblock %}

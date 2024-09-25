@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Default Title{% endblock %}</title>
+</head>
+<body>
+    <% outside_page ="yoo from base.html" %>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <% from datetime import datetime %>
+    <% today = datetime.now() %>
+    <p>&copy; %% today.year %% My Website</p>
+</body>
+</html>
