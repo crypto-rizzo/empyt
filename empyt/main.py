@@ -10,7 +10,7 @@ class EmpytEngine:
     It uses Jinja2 or Django templating to handle includes, extends, and standard syntax.
     """
 
-    def __init__(self, template_dir=None, engine='jinja'):
+    def __init__(self, template_dir=None, engine=None):
         self.template_dir = template_dir or '.'
 
         if engine == 'jinja':
@@ -22,6 +22,10 @@ class EmpytEngine:
         elif engine == 'django':
             self.engine = 'django'
             self.django_engine = engines['django']
+        elif engine == 'none':
+            self.engine = 'none'
+        else:
+            raise Exception("Must specify template engine")
 
     def render(self, template_name, context=None):
         if context is None:
@@ -35,6 +39,10 @@ class EmpytEngine:
             elif self.engine == 'django':
                 django_template = self.django_engine.get_template(template_name)
                 rendered_template = django_template.render(context)
+            elif self.engine == 'none':
+                from pathlib import Path
+                file_path = Path(f'{self.template_dir}/{template_name}')
+                rendered_template = file_path.read_text(encoding='utf-8')
             else:
                 return
 
