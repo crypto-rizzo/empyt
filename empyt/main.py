@@ -35,6 +35,8 @@ class EmpytEngine:
             elif self.engine == 'django':
                 django_template = self.django_engine.get_template(template_name)
                 rendered_template = django_template.render(context)
+            else:
+                return
 
         except (TemplateDoesNotExist, Exception) as e:
             # Handle errors, but for now we will just print them
