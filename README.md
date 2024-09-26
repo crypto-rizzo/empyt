@@ -46,19 +46,19 @@ To get started with empyt, follow these steps:
 
 ## Overview
 
-empyt is a template engine that allows you to embed Python code directly into your HTML templates. It combines the power of existing template engines like Jinja2 or Django's template language with the flexibility of inline Python code execution.
+empyt is a template library that allows you to embed Python code directly into your HTML templates.
 
 Key features:
-- Compatible with popular Python web frameworks (Flask, FastAPI, Django)
 - Supports both Jinja2 and Django template syntax
 - Allows direct Python code execution within templates
-- Maintains the ability to use includes, extends, and other standard templating features
+- Compatible with popular Python web frameworks (Flask, FastAPI, Django)
 
 ## Syntax
-empyt uses standard Python syntax within its code blocks. There's no custom templating language to learn.
+empyt uses standard Python syntax within its code blocks.
+There's no custom templating language to learn.
 
 ### Evaluation
-Use `%%expression%%` to evaluate a Python expression and insert its result:
+Use `%% expression %%` to evaluate a Python expression and insert its result:
 
 ```html
 <p>The current year is %% datetime.now().year %%</p>
@@ -66,7 +66,7 @@ Use `%%expression%%` to evaluate a Python expression and insert its result:
 
 ### Execution
 Use `<% code %>` for multi-line Python code blocks.
-Note how print() below is used similarly to echo in php.
+Note how `print()` below is used similarly to `echo` in php.
 
 ```html
 <%
